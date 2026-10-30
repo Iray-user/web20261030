@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Noto Serif TC", serif;
+}
+
+:root {
+    --bg001: #F7F7F5;
+    /* 最淺｜頁面背景 */
+    --bg002: #ECECE9;
+    /* 淺灰｜主要內容 */
+    --bg003: #D9D9D5;
+    /* 中淺灰｜區塊 */
+    --bg004: #AFAFAA;
+    /* 中灰｜導覽列 */
+    --bg005: #3b3b3a;
+
+    --btn001: #8F8F8A;
+    /* 深灰｜主要按鈕 */
+    --btn002: #252524;
+    /* 淺灰｜次要按鈕 */
+
+    --border001: #8F8F8A;
+    --border002: #3b3b3a;
+    --border003: #ECECE9;
+    --border004: #c0c0c0;
+
+    --boxsd: rgba(70, 70, 65, 0.16);
+    /* 柔和灰色陰影 */
+
+    --textcr001: #585858;
+    /* 深灰｜主要文字 */
+    --textcr002: #F7F7F5;
+    /* 冷白｜深色背景文字 */
+}
+
+.fw-100 {
+    font-weight: 100;
+}
+
+.fw-200 {
+    font-weight: 200;
+}
+
+.fw-300 {
+    font-weight: 300;
+}
+
+.fw-400 {
+    font-weight: 400;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.fw-800 {
+    font-weight: 800;
+}
+
+.fw-900 {
+    font-weight: 900;
+}

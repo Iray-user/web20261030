@@ -1,0 +1,218 @@
+ * {
+     margin: 0;
+     padding: 0;
+ }
+
+ body {
+     background-color: var(--bg001);
+ }
+
+ .wrapper {
+     width: 1024px;
+     margin-top: 0;
+     margin-bottom: 0;
+     margin-left: auto;
+     margin-right: auto;
+ }
+
+ .logo {
+     background-color: var(--bg003);
+     width: 1024px;
+     height: 180px;
+     background-image: url(../img/photo-1631679706909-1844bbd07221.avif);
+     background-position: center center;
+     background-size: cover;
+ }
+
+ nav {
+     background-color: var(--bg004);
+     padding-top: 30px;
+     padding-bottom: 30px;
+     text-align: center;
+     margin-top: 5px;
+ }
+
+ nav ul {
+     display: inline-block;
+     list-style-type: none;
+ }
+
+ nav ul li {
+     float: left;
+     margin-top: 0;
+     margin-bottom: 0;
+     margin-left: auto;
+     margin-right: auto;
+ }
+
+ nav ul li a {
+     text-decoration-line: none;
+     background-color: var(--btn002);
+     color: var(--textcr001);
+     padding-top: 10px;
+     padding-bottom: 10px;
+     padding-right: 30px;
+     padding-left: 30px;
+     margin-right: 20px;
+     font-size: 18px;
+     font-weight: bold;
+     border-radius: 50px;
+     box-shadow: 1px 1px 1px 1px var(--boxsd);
+
+ }
+
+
+ nav ul li a:hover {
+     background-color: var(--textcr002);
+     color: var(--btn002);
+     border-radius: 50px;
+     box-shadow: 1px 1px 1px 1px var(--boxsd);
+ }
+
+ .content {
+     background-color: var(--bg002);
+     padding-top: 50px;
+     padding-bottom: 50px;
+     padding-left: 40px;
+     padding-right: 40px;
+
+ }
+
+ .content h1 {
+     color: var(--textcr001);
+     font-size: 52px;
+     text-align: center;
+     margin-bottom: 20px;
+ }
+
+ .content .img01 {
+     width: 49%;
+     height: 240px;
+     margin-bottom: 40px;
+     margin-right: 10px;
+     background-color: aliceblue;
+     background-image: url(../img/premium_photo-1664970900025-1e3099ca757a.avif);
+     background-position: center center;
+     background-size: cover;
+     float: left;
+
+
+ }
+
+ .content .img02 {
+     width: 49%;
+     height: 240px;
+     background-color: aliceblue;
+     margin-bottom: 40px;
+     background-image: url(../img/premium_photo-1676968002767-1f6a09891350.avif);
+     background-position: center center;
+     background-size: cover;
+     float: left;
+ }
+
+ .content p {
+     color: var(--textcr001);
+     font-size: 20px;
+     margin-bottom: 15px;
+ }
+
+ .content a {
+     display: block;
+     width: 140px;
+     height: 50px;
+     background-color: var(--btn002);
+     color: var(--textcr001);
+     text-decoration: none;
+     text-align: center;
+     line-height: 50px;
+     border-radius: 50px;
+     box-shadow: 1px 1px 1px 1px var(--boxsd);
+     margin-top: 40px;
+     margin-bottom: 0;
+     margin-left: auto;
+     margin-right: auto;
+     font-size: 20px;
+     font-weight: bold;
+ }
+
+ .content a:hover {
+     background-color: var(--textcr002);
+     color: var(--btn002);
+     box-shadow: 1px 1px 1px 1px var(--boxsd);
+     font-weight: bold;
+ }
+
+ .footer {
+     background-color: var(--bg004);
+     text-align: center;
+     font-size: 18px;
+     padding-top: 15px;
+     padding-bottom: 15px;
+     color: var(--textcr002);
+     font-weight: bold;
+ }
+
+ @media screen and (max-width:1024px) {
+
+     .wrapper {
+         width: 95%;
+     }
+
+     .banner .logo {
+         width: 100%;
+         height: 140px;
+         background-image: url(../img/premium_photo-1676968002767-1f6a09891350.avif);
+
+     }
+
+ }
+
+ @media screen and (max-width:768px) {
+     .wrapper {
+         width: 99%;
+     }
+
+     .banner .logo {
+         width: 100%;
+         height: 140px;
+         background-image: url(../img/photo-1513694203232-719a280e022f.avif);
+
+     }
+
+     nav {
+         padding-top: 10px;
+         padding-bottom: 10px;
+     }
+
+     nav ul {
+         display: block;
+     }
+
+     nav ul li {
+         float: none;
+         margin-top: 5px;
+
+     }
+
+     nav ul li a {
+         display: block;
+         border-radius: 0;
+         margin-right: 0;
+         box-shadow: 0.5px 0.5px 0.5px 0.5px var(--boxsd);
+     }
+
+     .content .img01 {
+         width: 100%;
+         float: none;
+         margin-bottom: 10px;
+
+     }
+
+     .content .img02 {
+         width: 100%;
+         float: none;
+         margin-bottom: 10px;
+     }
+
+
+ }

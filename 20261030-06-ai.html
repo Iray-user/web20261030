@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRAY, THESE DAYS｜Objects for Everyday</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <style>
+        :root {
+            --bg001: #f5f3ee;
+            --bg002: #e9e5dc;
+            --bg003: #d8d2c6;
+            --textcr001: #292a28;
+            --textcr002: #85847e;
+            --line001: #dedbd3;
+            --accent001: #a7a18f;
+            --white001: #fbfaf7;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg001);
+            color: var(--textcr001);
+            font-family: Arial, "Noto Sans TC", sans-serif;
+            letter-spacing: .035em;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--textcr002);
+        }
+
+        .container {
+            max-width: 1380px;
+            padding-left: 28px;
+            padding-right: 28px;
+        }
+
+        /* Header */
+        .site-header {
+            padding: 22px 0 18px;
+            border-bottom: 1px solid var(--line001);
+        }
+
+        .brand {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 23px;
+            letter-spacing: .14em;
+            font-weight: 400;
+        }
+
+        .brand-subtitle {
+            margin-top: 4px;
+            color: var(--textcr002);
+            font-size: 8px;
+            letter-spacing: .22em;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 25px;
+            height: 100%;
+            font-size: 9px;
+            letter-spacing: .13em;
+        }
+
+        .nav-links a {
+            white-space: nowrap;
+        }
+
+        .cart-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 11px;
+            border: 1px solid var(--line001);
+        }
+
+        /* Banner */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 43px;
+            background: var(--bg002);
+        }
+
+        .hero img {
+            display: block;
+            width: 100%;
+            height: 540px;
+            object-fit: cover;
+            object-position: center 48%;
+        }
+
+        .hero::after {
+            position: absolute;
+            inset: 0;
+            content: "";
+            background: linear-gradient(90deg, rgba(28, 28, 25, .35), rgba(28, 28, 25, 0) 75%);
+            pointer-events: none;
+        }
+
+        .hero-copy {
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 7%;
+            max-width: 440px;
+            transform: translateY(-50%);
+            color: var(--white001);
+        }
+
+        .hero-copy .eyebrow {
+            color: rgba(251, 250, 247, .8);
+        }
+
+        .hero-copy h2 {
+            margin: 14px 0 12px;
+            font-family: Georgia, "Noto Serif TC", serif;
+            font-size: clamp(28px, 4vw, 47px);
+            font-weight: 400;
+            line-height: 1.45;
+            letter-spacing: .1em;
+        }
+
+        .hero-copy p {
+            margin: 0 0 20px;
+            color: rgba(251, 250, 247, .88);
+            font-size: 11px;
+            line-height: 1.9;
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 10px 17px;
+            border: 1px solid rgba(251, 250, 247, .8);
+            color: var(--white001);
+            font-size: 9px;
+            letter-spacing: .15em;
+            transition: .2s ease;
+        }
+
+        .hero-button:hover {
+            background: var(--white001);
+            color: var(--textcr001);
+        }
+
+        /* Section headings */
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: 0 0 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--line001);
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-family: Georgia, "Noto Serif TC", serif;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: .1em;
+        }
+
+        .section-heading span {
+            color: var(--textcr002);
+            font-family: Georgia, serif;
+            font-size: 9px;
+            letter-spacing: .13em;
+        }
+
+        /* Product grid */
+        .product-card {
+            margin-bottom: 30px;
+        }
+
+        .product-image-wrap {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background: var(--bg002);
+        }
+
+        .product-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform .4s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.035);
+        }
+
+        .product-info {
+            padding-top: 10px;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--textcr002);
+            font-family: Georgia, serif;
+            font-size: 8px;
+            letter-spacing: .14em;
+        }
+
+        .product-name {
+            margin: 7px 0 5px;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: .07em;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 9px;
+        }
+
+        .product-price {
+            font-family: Georgia, serif;
+            font-size: 11px;
+        }
+
+        .product-add {
+            padding: 5px 8px;
+            border: 1px solid var(--line001);
+            background: transparent;
+            color: var(--textcr001);
+            font-size: 8px;
+            letter-spacing: .08em;
+        }
+
+        .product-add:hover {
+            background: var(--textcr001);
+            color: var(--white001);
+        }
+
+        /* Category：透明背景與簡約線條圖示 */
+        .category-section {
+            margin-top: 7px;
+        }
+
+        .category-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 130px;
+            margin-bottom: 28px;
+            padding: 16px 8px;
+            background: transparent;
+            text-align: center;
+            transition: transform .25s ease, color .25s ease;
+        }
+
+        .category-card:hover {
+            color: var(--accent001);
+            transform: translateY(-3px);
+        }
+
+        .category-icon {
+            width: 34px;
+            height: 34px;
+            fill: none;
+            stroke: var(--accent001);
+            stroke-width: 1.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .category-en {
+            color: var(--textcr002);
+            font-family: Georgia, serif;
+            font-size: 8px;
+            letter-spacing: .18em;
+        }
+
+        .category-zh {
+            margin-top: -5px;
+            font-family: "Noto Serif TC", serif;
+            font-size: 13px;
+            letter-spacing: .1em;
+        }
+
+        /* Brand philosophy：淡灰米色底、置中編排 */
+        .brand-story {
+            margin: 0 0 55px;
+            padding: 55px 25px;
+            background: var(--bg002);
+            text-align: center;
+        }
+
+        .brand-story .eyebrow {
+            margin-bottom: 15px;
+            color: var(--textcr002);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 9px;
+            letter-spacing: .2em;
+        }
+
+        .brand-story h2 {
+            margin: 0 0 18px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 36px;
+            font-weight: 400;
+            line-height: 1.4;
+            letter-spacing: .06em;
+        }
+
+        .brand-story .story-line {
+            width: 38px;
+            height: 1px;
+            margin: 0 auto 18px;
+            background: var(--accent001);
+        }
+
+        .brand-story p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--textcr002);
+            font-size: 11px;
+            line-height: 2.2;
+            letter-spacing: .06em;
+        }
+
+        /* Cart / Contact */
+        .info-panel {
+            height: 100%;
+            min-height: 130px;
+            margin-bottom: 28px;
+            padding: 22px 23px;
+            background: var(--bg002);
+        }
+
+        .info-panel h2 {
+            margin: 0 0 9px;
+            font-family: Georgia, "Noto Serif TC", serif;
+            font-size: 15px;
+            font-weight: 400;
+            letter-spacing: .1em;
+        }
+
+        .info-panel p {
+            margin: 0;
+            color: var(--textcr002);
+            font-size: 10px;
+            line-height: 1.9;
+        }
+
+        .info-link {
+            display: inline-block;
+            margin-top: 11px;
+            padding-bottom: 3px;
+            border-bottom: 1px solid var(--accent001);
+            font-size: 9px;
+            letter-spacing: .12em;
+        }
+
+        /* Footer */
+        .site-footer {
+            margin-top: 8px;
+            padding: 22px 0 28px;
+            border-top: 1px solid var(--line001);
+        }
+
+        .footer-brand {
+            font-family: Georgia, serif;
+            font-size: 13px;
+            letter-spacing: .13em;
+        }
+
+        .footer-copy {
+            margin-top: 6px;
+            color: var(--textcr002);
+            font-size: 8px;
+            letter-spacing: .1em;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: flex-end;
+            gap: 18px;
+            color: var(--textcr002);
+            font-size: 8px;
+            letter-spacing: .12em;
+        }
+
+        /* RWD */
+        @media (max-width: 767.98px) {
+            .container {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .site-header {
+                padding: 17px 0;
+            }
+
+            .brand {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                gap: 13px;
+                margin-top: 15px;
+                font-size: 8px;
+            }
+
+            .hero {
+                margin-bottom: 32px;
+            }
+
+            .hero img {
+                height: 380px;
+            }
+
+            .hero-copy {
+                left: 6%;
+                right: 6%;
+            }
+
+            .hero-copy h2 {
+                font-size: 29px;
+            }
+
+            .section-heading h2 {
+                font-size: 14px;
+            }
+
+            .section-heading span {
+                font-size: 8px;
+            }
+
+            .product-card {
+                margin-bottom: 23px;
+            }
+
+            .product-name {
+                font-size: 10px;
+            }
+
+            .product-add {
+                padding: 5px 6px;
+                font-size: 7px;
+            }
+
+            .category-card {
+                min-height: 115px;
+            }
+
+            .category-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .brand-story {
+                margin-bottom: 38px;
+                padding: 38px 18px;
+            }
+
+            .brand-story h2 {
+                font-size: 27px;
+            }
+
+            .info-panel {
+                min-height: 0;
+                padding: 19px;
+            }
+
+            .footer-links {
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                margin-top: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <header class="site-header">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6">
+                    <a href="#" class="brand">IRAY, THESE DAYS</a>
+                    <div class="brand-subtitle">OBJECTS FOR EVERYDAY LIVING</div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <nav class="nav-links">
+                        <a href="#collection">SHOP</a>
+                        <a href="#categories">CATEGORY</a>
+                        <a href="#about">ABOUT</a>
+                        <a href="#contact">CONTACT</a>
+                        <a href="#cart" class="cart-link">BAG　(0)</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Banner -->
+        <section class="row">
+            <div class="col-12">
+                <div class="hero">
+                    <img src="img/things-01.jpg" alt="IRAY THESE DAYS 精選生活選物">
+
+                    <div class="hero-copy">
+                        <div class="eyebrow">THE EVERYDAY EDIT / 01</div>
+                        <h2>Make room for<br>little things.</h2>
+                        <p>讓喜歡的物件，成為日常的一部分。</p>
+                        <a href="#collection" class="hero-button">EXPLORE COLLECTION　↗</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Philosophy：淡灰米色底、置中編排 -->
+        <section id="about" class="brand-story">
+            <div class="eyebrow">ABOUT IRAY, THESE DAYS</div>
+
+            <h2>
+                Little Things.
+            </h2>
+
+            <div class="story-line"></div>
+
+            <p>
+                IRAY, THESE DAYS 是一個關於日常與生活選物的提案。<br>
+                從居家、餐桌到生活小物，挑選簡單耐看、能自然融入日常的設計。<br>
+                不追求多，而是希望每一件留下來的物品，都有被喜歡與使用的理由。
+            </p>
+        </section>
+
+        <!-- 商品：桌機四欄、手機兩欄 -->
+        <section id="collection">
+            <div class="section-heading">
+                <h2>精選商品 / Selected Objects</h2>
+                <span>SHOP ALL　↗</span>
+            </div>
+
+            <div class="row">
+
+                <!-- 商品 01 -->
+                <div class="col-sm-6 col-xxl-3 mt-3">
+                    <article class="product-card">
+                        <div class="product-image-wrap">
+                            <img src="img/things-01.jpg" class="product-image" alt="選物商品 01">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-meta">
+                                <span>HOME OBJECT</span>
+                                <span>01</span>
+                            </div>
+                            <h3 class="product-name">日常生活選物 01</h3>
+                            <div class="product-bottom">
+                                <span class="product-price">NT$ 680</span>
+                                <a href="#cart" class="product-add">ADD TO BAG +</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- 商品 02 -->
+                <div class="col-sm-6 col-xxl-3 mt-3">
+                    <article class="product-card">
+                        <div class="product-image-wrap">
+                            <img src="img/things-02.jpg" class="product-image" alt="選物商品 02">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-meta">
+                                <span>DAILY GOODS</span>
+                                <span>02</span>
+                            </div>
+                            <h3 class="product-name">日常生活選物 02</h3>
+                            <div class="product-bottom">
+                                <span class="product-price">NT$ 920</span>
+                                <a href="#cart" class="product-add">ADD TO BAG +</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- 商品 03 -->
+                <div class="col-sm-6 col-xxl-3 mt-3">
+                    <article class="product-card">
+                        <div class="product-image-wrap">
+                            <img src="img/things-03.jpg" class="product-image" alt="選物商品 03">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-meta">
+                                <span>OBJECT</span>
+                                <span>03</span>
+                            </div>
+                            <h3 class="product-name">日常生活選物 03</h3>
+                            <div class="product-bottom">
+                                <span class="product-price">NT$ 750</span>
+                                <a href="#cart" class="product-add">ADD TO BAG +</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- 商品 04 -->
+                <div class="col-sm-6 col-xxl-3 mt-3">
+                    <article class="product-card">
+                        <div class="product-image-wrap">
+                            <img src="img/things-04.jpg" class="product-image" alt="選物商品 04">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-meta">
+                                <span>LIVING</span>
+                                <span>04</span>
+                            </div>
+                            <h3 class="product-name">日常生活選物 04</h3>
+                            <div class="product-bottom">
+                                <span class="product-price">NT$ 1,080</span>
+                                <a href="#cart" class="product-add">ADD TO BAG +</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- 商品 05 -->
+                <div class="col-sm-6 col-xxl-3 mt-3">
+                    <article class="product-card">
+                        <div class="product-image-wrap">
+                            <img src="img/things-05.jpg" class="product-image" alt="選物商品 05">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-meta">
+                                <span>SELECTED</span>
+                                <span>05</span>
+                            </div>
+                            <h3 class="product-name">日常生活選物 05</h3>
+                            <div class="product-bottom">
+                                <span class="product-price">NT$ 890</span>
+                                <a href="#cart" class="product-add">ADD TO BAG +</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- 商品 06 -->
+                <div class="col-sm-6 col-xxl-3 mt-3">
+                    <article class="product-card">
+                        <div class="product-image-wrap">
+                            <img src="img/things-03.jpg" class="product-image" alt="選物商品 06">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-meta">
+                                <span>HOME OBJECT</span>
+                                <span>06</span>
+                            </div>
+                            <h3 class="product-name">日常生活選物 06</h3>
+                            <div class="product-bottom">
+                                <span class="product-price">NT$ 560</span>
+                                <a href="#cart" class="product-add">ADD TO BAG +</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- 商品 07 -->
+                <div class="col-sm-6 col-xxl-3 mt-3">
+                    <article class="product-card">
+                        <div class="product-image-wrap">
+                            <img src="img/things-04.jpg" class="product-image" alt="選物商品 07">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-meta">
+                                <span>DAILY GOODS</span>
+                                <span>07</span>
+                            </div>
+                            <h3 class="product-name">日常生活選物 07</h3>
+                            <div class="product-bottom">
+                                <span class="product-price">NT$ 780</span>
+                                <a href="#cart" class="product-add">ADD TO BAG +</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- 商品 08 -->
+                <div class="col-sm-6 col-xxl-3 mt-3">
+                    <article class="product-card">
+                        <div class="product-image-wrap">
+                            <img src="img/things-05.jpg" class="product-image" alt="選物商品 08">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-meta">
+                                <span>EDITOR'S PICK</span>
+                                <span>08</span>
+                            </div>
+                            <h3 class="product-name">日常生活選物 08</h3>
+                            <div class="product-bottom">
+                                <span class="product-price">NT$ 1,200</span>
+                                <a href="#cart" class="product-add">ADD TO BAG +</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 生活分類：透明背景＋簡約線條 Logo -->
+        <section id="categories" class="category-section">
+            <div class="section-heading">
+                <h2>依照生活分類 / Categories</h2>
+                <span>DISCOVER MORE</span>
+            </div>
+
+            <div class="row">
+
+                <!-- 居家生活 -->
+                <div class="col-sm-6 col-xxl-3 mt-3">
+                    <a href="#collection" class="category-card">
+                        <svg class="category-icon" viewBox="0 0 40 40" aria-hidden="true">
+                            <path d="M5 18.5 20 6l15 12.5" />
+                            <path d="M9.5 17v17h21V17M16 34V22h8v12" />
+                        </svg>
+                        <span class="category-en">AT HOME</span>
+                        <span class="category-zh">居家生活</span>
+                    </a>
+                </div>
+
+                <!-- 餐桌器物 -->
+                <div class="col-sm-6 col-xxl-3 mt-3">
+                    <a href="#collection" class="category-card">
+                        <svg class="category-icon" viewBox="0 0 40 40" aria-hidden="true">
+                            <path d="M9 13h20v13a7 7 0 0 1-7 7h-6a7 7 0 0 1-7-7V13Z" />
+                            <path d="M29 16h3a4 4 0 0 1 0 8h-3M13 8h12" />
+                        </svg>
+                        <span class="category-en">TABLE & KITCHEN</span>
+                        <span class="category-zh">餐桌器物</span>
+                    </a>
+                </div>
+
+                <!-- 日常小物 -->
+                <div class="col-sm-6 col-xxl-3 mt-3">
+                    <a href="#collection" class="category-card">
+                        <svg class="category-icon" viewBox="0 0 40 40" aria-hidden="true">
+                            <path
+                                d="M20 34V19M20 25c-8 0-11-5-11-11 7 0 11 4 11 11ZM20 21c0-8 4-12 11-12 0 7-4 12-11 12Z" />
+                            <path d="M13 34h14" />
+                        </svg>
+                        <span class="category-en">DAILY OBJECTS</span>
+                        <span class="category-zh">日常小物</span>
+                    </a>
+                </div>
+
+                <!-- 編輯選品 -->
+                <div class="col-sm-6 col-xxl-3 mt-3">
+                    <a href="#collection" class="category-card">
+                        <svg class="category-icon" viewBox="0 0 40 40" aria-hidden="true">
+                            <path d="m20 5 3.7 9.3L33 18l-9.3 3.7L20 31l-3.7-9.3L7 18l9.3-3.7L20 5Z" />
+                            <path d="m31 27 1.5 3.5L36 32l-3.5 1.5L31 37l-1.5-3.5L26 32l3.5-1.5L31 27Z" />
+                        </svg>
+                        <span class="category-en">EDITOR'S PICK</span>
+                        <span class="category-zh">編輯選品</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 購物車與聯絡資訊 -->
+        <section class="row" id="cart">
+            <div class="col-12 col-md-6">
+                <div class="info-panel">
+                    <h2>Shopping Bag　購物袋</h2>
+                    <p>目前購物袋尚無商品。選擇喜歡的物件，為日常添一點新的風景。</p>
+                    <a href="#collection" class="info-link">CONTINUE SHOPPING　↗</a>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6" id="contact">
+                <div class="info-panel">
+                    <h2>Contact　聯絡我們</h2>
+                    <p>商品相關問題、合作邀約或其他詢問，歡迎透過電子郵件與我們聯繫。</p>
+                    <a href="mailto:hello@iray-thesedays.com" class="info-link">HELLO@IRAY-THESEDAYS.COM　↗</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="row align-items-end">
+                <div class="col-12 col-md-6">
+                    <div class="footer-brand">IRAY, THESE DAYS</div>
+                    <div class="footer-copy">OBJECTS FOR EVERYDAY LIVING.</div>
+                    <div class="footer-copy">© 2026 IRAY, THESE DAYS. ALL RIGHTS RESERVED.</div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="footer-links">
+                        <a href="#collection">SHOP</a>
+                        <a href="#about">ABOUT</a>
+                        <a href="#contact">CONTACT</a>
+                        <a href="#">BACK TO TOP ↑</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
